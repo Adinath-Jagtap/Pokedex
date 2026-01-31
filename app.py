@@ -5,21 +5,21 @@ from PIL import Image
 import json
 import io
 import os
+import gdown
 
 app = Flask(__name__)
 
-import gdown
-import os
-
-# Download model on first run
-if not os.path.exists('pokedex_model.h5'):
-    url = 'https://drive.google.com/file/d/1AP-v-ZnMGo82MZvlpPS15nAJC8_kSk-z/view?usp=sharing'  # Replace with your link
-    gdown.download(url, 'pokedex_model.h5', quiet=False, fuzzy=True)
-
-model = tf.keras.models.load_model('pokedex_model.h5')
+# Download model from Google Drive if not exists
+MODEL_FILE = 'pokedex_model.h5'
+if not os.path.exists(MODEL_FILE):
+    print("Downloading model from Google Drive...")
+    file_id = 'YOUR_FILE_ID_HERE'  # Replace with your FILE_ID
+    url = f'https://drive.google.com/file/d/1AP-v-ZnMGo82MZvlpPS15nAJC8_kSk-z/view?usp=drive_link'
+    gdown.download(url, MODEL_FILE, quiet=False)
+    print("Model downloaded!")
 
 # Load model and labels
-model = tf.keras.models.load_model('pokedex_model.h5')
+model = tf.keras.models.load_model(MODEL_FILE)
 with open('label_map.json', 'r') as f:
     label_map = json.load(f)
 
