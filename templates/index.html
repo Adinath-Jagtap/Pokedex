@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔴 Pokédex AI</h1>
+        <p class="subtitle">Upload a Pokémon image to identify it</p>
+        
+        <div class="upload-box">
+            <input type="file" id="imageInput" accept="image/*">
+            <label for="imageInput" class="upload-label">
+                <span>Choose Image</span>
+            </label>
+        </div>
+
+        <div id="preview" class="preview hidden">
+            <img id="previewImage" alt="Preview">
+        </div>
+
+        <button id="predictBtn" class="predict-btn hidden">Identify Pokémon</button>
+
+        <div id="loading" class="loading hidden">Analyzing...</div>
+
+        <div id="result" class="result hidden">
+            <h2 id="pokemonName"></h2>
+            <p id="confidence"></p>
+            
+            <div class="top3">
+                <h3>Top 3 Predictions:</h3>
+                <ul id="top3List"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        const previewImage = document.getElementById('previewImage');
+        const predictBtn = document.getElementById('predictBtn');
+        const loading = document.getElementById('loading');
+        const result = document.getElementById('result');
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    predictBtn.classList.remove('hidden');
+                    result.classList.add('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        predictBtn.addEventListener('click', async function() {
+            const file = imageInput.files[0];
+            if (!file) return;
+
+            loading.classList.remove('hidden');
+            predictBtn.classList.add('hidden');
+            result.classList.add('hidden');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                document.getElementById('pokemonName').textContent = data.pokemon.toUpperCase();
+                document.getElementById('confidence').textContent = 
+                    `Confidence: ${data.confidence.toFixed(1)}%`;
+
+                const top3List = document.getElementById('top3List');
+                top3List.innerHTML = '';
+                data.top3.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name}: ${item.confidence.toFixed(1)}%`;
+                    top3List.appendChild(li);
+                });
+
+                loading.classList.add('hidden');
+                result.classList.remove('hidden');
+                predictBtn.classList.remove('hidden');
+
+            } catch (error) {
+                alert('Error: ' + error.message);
+                loading.classList.add('hidden');
+                predictBtn.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
