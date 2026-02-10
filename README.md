@@ -238,27 +238,3 @@ def border_matrix(n):
     for row in mat:
         print(*row)
 ```
-
----
-
-### **Pattern 5: Column-wise Snake** 📊
-**Logic**: Fill columns, alternating direction
-
-```python
-def column_snake(rows, cols):
-    mat = [[0] * cols for _ in range(rows)]
-    num = 1
-    
-    for j in range(cols):
-        if j % 2 == 0:  # Even columns: top to bottom
-            for i in range(rows):
-                mat[i][j] = num
-                num += 1
-        else:  # Odd columns: bottom to top
-            for i in range(rows - 1, -1, -1):
-                mat[i][j] = num
-                num += 1
-    
-    for row in mat:
-        print(*row)
-```
