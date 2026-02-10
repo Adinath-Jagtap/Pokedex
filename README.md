@@ -209,24 +209,3 @@ def diagonal_matrix(n):
     for i in range(n):
         mat[i][n-1-i] = value
 ```
-
----
-
-### **Pattern 4: Border Fill** 🖼️
-**Logic**: Fill only edges, leave center empty/different
-
-```python
-def border_matrix(n):
-    mat = [[0] * n for _ in range(n)]
-    
-    for i in range(n):
-        for j in range(n):
-            # Check if border
-            if i == 0 or i == n-1 or j == 0 or j == n-1:
-                mat[i][j] = value
-            else:
-                mat[i][j] = 0
-    
-    for row in mat:
-        print(*row)
-```
