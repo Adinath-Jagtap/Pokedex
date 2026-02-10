@@ -1,10 +1,4 @@
 
-**Common Transformations**:
-1. **Cubes**: `print(a**3)`
-2. **Prime Filter**: Check `is_prime(a)` before printing
-3. **Range [i:j]**: Store in list, slice later
-4. **Digit Operations**: `sum(int(d)**3 for d in str(a))`
-
 **Example - Cubes of Fibonacci**:
 ```python
 def cubes_of_fibonacci(n):
