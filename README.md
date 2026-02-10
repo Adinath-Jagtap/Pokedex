@@ -1,14 +1,4 @@
 
-**Example - Cubes of Fibonacci**:
-```python
-def cubes_of_fibonacci(n):
-    a, b = 0, 1
-    for _ in range(n):
-        print(a**3, end=" ")
-        a, b = b, a + b
-```
-
----
 
 ### **Pattern 2: Digit Manipulation** 🔢
 **What it is**: Break numbers into digits, transform, recombine
@@ -99,31 +89,6 @@ while cumsum < limit:
 2. **Digit extraction**: `[int(d) for d in str(num)]`
 3. **Prime check**: Loop up to `sqrt(n)`
 4. **Combine conditions**: `if is_prime(fib) and fib % 2 == 0:`
-
----
-
-## 🔥 HARD QUESTIONS - Matrix Patterns (10 mins)
-
-### **Pattern 1: Snake Fill (Zig-Zag)** 🐍
-**Logic**: Fill rows left→right, then right→left alternately
-
-```python
-def snake_matrix(n):
-    num = 1
-    for i in range(n):
-        row = list(range(num, num + n))
-        if i % 2 == 1:  # Odd rows reversed
-            row = row[::-1]
-        print(*row)
-        num += n
-```
-
-**Visual**:
-```
-1  2  3  4
-8  7  6  5  ← reversed
-9 10 11 12
-```
 
 ---
 
