@@ -193,19 +193,3 @@ def spiral_matrix(n):
 ```
 
 ---
-
-### **Pattern 3: Diagonal Fill** ⚡
-**Logic**: Fill along diagonals
-
-```python
-def diagonal_matrix(n):
-    mat = [[0] * n for _ in range(n)]
-    
-    # Main diagonal
-    for i in range(n):
-        mat[i][i] = value
-    
-    # Anti-diagonal
-    for i in range(n):
-        mat[i][n-1-i] = value
-```
