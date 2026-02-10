@@ -1,11 +1,3 @@
-# 🚀 20-MINUTE STUDY GUIDE: MEDIUM & HARD QUESTIONS
-
-## ⏱️ TIME BREAKDOWN
-- **Medium (10 mins)**: Number series + transformations
-- **Hard (10 mins)**: Matrix patterns + filling techniques
-
----
-
 ## 📊 MEDIUM QUESTIONS - Core Patterns (10 mins)
 
 ### **Pattern 1: Fibonacci Variations** ⭐
