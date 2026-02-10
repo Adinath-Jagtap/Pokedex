@@ -1,15 +1,3 @@
-## 📊 MEDIUM QUESTIONS - Core Patterns (10 mins)
-
-### **Pattern 1: Fibonacci Variations** ⭐
-**What it is**: Generate Fibonacci, then transform/filter it
-
-**Core Fibonacci Generator**:
-```python
-a, b = 0, 1
-for _ in range(n):
-    # Do something with 'a'
-    a, b = b, a + b  # KEY: Swap and add
-```
 
 **Common Transformations**:
 1. **Cubes**: `print(a**3)`
